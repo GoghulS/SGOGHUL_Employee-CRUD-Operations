@@ -1,0 +1,55 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control"[(ngModel)]="name" 
+        placeholder="Search by name"
+        
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary" 
+          (click)="searchName()" 
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Employees List</h4>
+    <table border="1px" cellspacing="40px" class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Salary</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveEmployee(employee, i)">
+        <td style="cursor:pointer;">{{employee.id}}</td>
+        <td style="cursor:pointer;">{{ employee.name }}</td>
+        <td style="cursor:pointer;">{{employee.department}}</td>
+        <td style="cursor:pointer;">{{employee.designation}}</td>
+        <td style="cursor:pointer;">{{employee.salary}}</td>
+        </tr>
+      
+    </tbody>
+  </table>
+  
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllEmployees()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <app-view-employee
+      [viewMode]="true"
+      [currentEmployee]="currentEmployee"
+    ></app-view-employee>
+  </div>
+</div>
